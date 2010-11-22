@@ -1,6 +1,6 @@
 = Backpack Journal
 
-* http://github.com/jbarnette/backpack-journal
+* https://github.com/railslove/backpack-journal
 
 == Description
 
@@ -14,13 +14,19 @@ over as maintainer, drop me a line!
     # user-id is your NUMERIC user ID. Check your URL, e.g.,
     # http://something.backpackit.com/users/31415926/edit
 
-    $ backpack-journal setup <user-id> <api-token>
-    $ backpack-journal status "Messing with backpack-journal!"
-    $ backpack-journal entry "Got my daily dose of awesome."
+    ## The subdomain should include the http(s)
+    # e.g.
+    # backpack_journal setup https://awesomeinc 123 123
+    # or
+    # backpack_journal setup http://awesomeinc 123 123
+    ##
+
+    $ backpack_journal setup <subdomain> <user-id> <api-token>
+    $ backpack_journal entry "Got my daily dose of awesome."
 
 == Installation
 
-  $ gem install backpack-journal
+  $ gem install backpack_journal
 
 == License
 

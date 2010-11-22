@@ -1,0 +1,27 @@
+PATH
+  remote: .
+  specs:
+    backpack-journal (1.1.0)
+      rest-client (~> 1.6.1)
+      thor (~> 0.14.6)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    mime-types (1.16)
+    rake (0.8.7)
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
+    thor (0.14.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  backpack-journal!
+  rake (~> 0.8.7)
+  rest-client (~> 1.6.1)
+  thor (~> 0.14.6)
+
+METADATA
+  version: 1.0.6

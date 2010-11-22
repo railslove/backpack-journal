@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require "rubygems"
+require "pathname"
+require "thor"
+
+require "net/http"
+require "rest_client"
+require "uri"
+
+module BackpackJournal
+  class CLI < Thor
+    IDENTITY = Pathname.new(File.expand_path("~/.backpack-journal"))
+
+    desc "setup USER_ID TOKEN", "set up your Backpack identity"
+    def setup(subdomain, user_id, token)
+      save_identity(subdomain, user_id, token)
+    end
+
+    desc "entry MESSAGE", "add a journal entry"
+    def entry(message)
+      subdomain, user_id, token = load_identity
+
+      url = "#{subdomain}.backpackit.com/users/#{user_id}/journal_entries.xml"
+
+      body =<<-END
+        <request>
+          <token>#{token}</token>
+          <journal-entry>
+            <body>#{message}</body>
+          </journal-entry>
+        </request>
+      END
+
+      RestClient.post url, body, :content_type => :xml
+    end
+
+    private
+
+    def save_identity(subdomain, user_id, token)
+      IDENTITY.open("w") { |i| i.write("#{subdomain},#{user_id},#{token}") }
+    end
+
+    def load_identity
+      abort("No identity: run backpack-journal setup") unless IDENTITY.exist?
+      IDENTITY.read.split(",")
+    end
+  end
+end
+
+BackpackJournal::CLI.start
