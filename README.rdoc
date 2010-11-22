@@ -24,6 +24,11 @@ over as maintainer, drop me a line!
     $ backpack_journal setup <subdomain> <user-id> <api-token>
     $ backpack_journal entry "Got my daily dose of awesome."
 
+I recommend adding an alias in ~/.profile
+
+    alias j="backpack_journal"
+    alias je="backpack_journal entry"
+
 == Installation
 
   $ gem install backpack_journal
